@@ -15,3 +15,19 @@ export const getRandomArrayElement = (array) => {
 export const stringCount = (text, sign) => {
   return text.length <= sign;
 }
+
+export const randomIntegerGenerator = (min, max) => {
+  const previousValues = [];
+
+  return () => {
+    let currentValue = getRandomInt(min, max);
+    if (previousValues.length >= (max - min + 1)) {
+      throw new Error('Перебраны все числа из диапазона от ' + min + ' до ' + max);
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomInt(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  };
+};

@@ -33,11 +33,11 @@ const AUTOR_NAME = [
   'Мурзик'
 ];
 
-
-const createPhoto = (index) => {
+const createPhoto = () => {
+  const id = util.randomIntegerGenerator(1, RANDOM_PHOTO_COUNT)();
   return {
-    id: index,
-    url: `photos/${index}.jpg`,
+    id: id,
+    url: `photos/${id}.jpg`,
     description: util.getRandomArrayElement(RANDOM_PHOTO_DESCRIPTION),
     likes: util.getRandomInt(LIKES.MIN, LIKES.MAX),
     comments: createComment(),
@@ -45,10 +45,11 @@ const createPhoto = (index) => {
 }
 
 const createComment = () => {
-  let comments = [];
+  const comments = [];
   for (let i = 0; i < util.getRandomInt(COMMENTS.MIN, COMMENTS.MAX); i++) {
+    const id = util.randomIntegerGenerator(1, 999)();
     comments.push({
-      id: i,
+      id: id,
       avatar: `img/avatar-${util.getRandomInt(1, 6)}.svg`,
       message: util.getRandomArrayElement(RANDOM_PHOTO_COMMENTS),
       name: util.getRandomArrayElement(AUTOR_NAME),
@@ -57,4 +58,4 @@ const createComment = () => {
   return comments;
 }
 
-export const USERS = new Array(RANDOM_PHOTO_COUNT).fill(null).map((curr, index) => createPhoto(index));
+export const USERS = new Array(RANDOM_PHOTO_COUNT).fill(null).map(() => createPhoto());
