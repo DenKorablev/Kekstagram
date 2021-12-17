@@ -31,3 +31,7 @@ export const randomIntegerGenerator = (min, max) => {
     return currentValue;
   };
 };
+
+export const isEscape = (evt) => {
+  return evt.key === 'Escape' || evt.key === 'Esc';
+}

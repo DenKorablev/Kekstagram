@@ -1,4 +1,5 @@
 import {USERS} from './data.js';
+import {onShowPicture} from './full-photo.js';
 
 const photoTemplate = document.querySelector('#picture')
   .content
@@ -8,12 +9,21 @@ const photosListElement = document.querySelector('.pictures');
 const createPhotos = USERS;
 const photoListFragments = document.createDocumentFragment();
 
-createPhotos.forEach(({url, likes, comments}) => {
-  const photoElement = photoTemplate.cloneNode(true);
-  photoElement.querySelector('.picture__img').src = url;
-  photoElement.querySelector('.picture__comments').textContent = comments.length;
-  photoElement.querySelector('.picture__likes').textContent = likes;
-  photoListFragments.appendChild(photoElement);
-});
+export const renderPhotos = () => {
+  createPhotos.forEach((object) => {
+    const photo = photoTemplate.cloneNode(true);
 
-export const renderPhotos = () => photosListElement.appendChild(photoListFragments);
+    photo.querySelector('.picture__img').src = object.url;
+    photo.querySelector('.picture__comments').textContent = object.comments.length;
+    photo.querySelector('.picture__likes').textContent = object.likes;
+
+    photo.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      onShowPicture(object)
+    })
+
+    photoListFragments.appendChild(photo);
+  });
+
+  photosListElement.appendChild(photoListFragments)
+};
