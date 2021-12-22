@@ -35,3 +35,10 @@ export const randomIntegerGenerator = (min, max) => {
 export const isEscape = (evt) => {
   return evt.key === 'Escape' || evt.key === 'Esc';
 }
+
+export const cancelEvent = (evt) => {
+  if (isEscape(evt)) {
+    evt.stopPropagation();
+    evt.preventDefault();
+  }
+}
