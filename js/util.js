@@ -1,3 +1,11 @@
+const ALERT_SHOW_TIME = 5000;
+const errorTemplate = document.querySelector('#error')
+  .content
+  .querySelector('.error');
+const successTemplate = document.querySelector('#success')
+  .content
+  .querySelector('.success');
+
 export const getRandomInt = (min, max) => {
   if (min < 0 || max < 0) return -1;
 
@@ -42,3 +50,26 @@ export const cancelEvent = (evt) => {
     evt.preventDefault();
   }
 }
+
+export const showSuccess = () => {
+  const container = successTemplate.cloneNode(true);
+
+  container.querySelector('.success__button').addEventListener('click', () => {
+    container.remove();
+  });
+
+  document.body.append(container);
+};
+
+export const showAlert = (message) => {
+  const container = errorTemplate.cloneNode(true);
+
+  container.querySelector('.error__title').textContent = message;
+  container.querySelector('.error__button').remove();
+
+  document.body.append(container);
+
+  setTimeout(() => {
+    container.remove();
+  }, ALERT_SHOW_TIME);
+};

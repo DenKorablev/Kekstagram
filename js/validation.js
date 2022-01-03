@@ -1,8 +1,8 @@
-import {cancelEvent} from './util.js';
+import { cancelEvent } from './util.js';
 
 const VALID_PARAMS = {
   MAX_HASHTAG: 5,
-  MAX_LENGTH: 20
+  MAX_LENGTH: 20,
 };
 
 const MESSAGE = {
@@ -12,7 +12,7 @@ const MESSAGE = {
   HESTAG_VALUE_INCLUSIVE: ' cимволов, включая решётку',
   HESTAG_NO_REPEAT: 'Один и тот же хэш-тег не может быть использован дважды',
   HESTAG_MAX_NUMBER: 'Хэштегов может быть максимум ',
-  HESTAG_SEPARATOR: 'Хэш-теги разделяются пробелами'
+  HESTAG_SEPARATOR: 'Хэш-теги разделяются пробелами',
 };
 
 const fieldHashtags = document.querySelector('.text__hashtags');
@@ -33,7 +33,7 @@ fieldHashtags.addEventListener('input', () => {
   });
   const isRepeatHashtag = new Set(hashtags).size !== hashtags.length;
   const isMaxHashtag = hashtags.length > VALID_PARAMS.MAX_LENGTH;
-  const isSeparatorHashtag =  hashtags.some(item => item.split('#').length - 1 > 1);
+  const isSeparatorHashtag = hashtags.some(item => item.split('#').length - 1 > 1);
 
   if (isNotHashtag) {
     fieldHashtags.setCustomValidity(MESSAGE.HESTAG_START);

@@ -1,16 +1,14 @@
-import {USERS} from './data.js';
-import {onShowPicture} from './full-photo.js';
+import { onShowPicture } from './full-photo.js';
 
 const photoTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 const photosListElement = document.querySelector('.pictures');
 
-const createPhotos = USERS;
 const photoListFragments = document.createDocumentFragment();
 
-export const renderPhotos = () => {
-  createPhotos.forEach((object) => {
+export const renderPhotos = (photos) => {
+  photos.forEach((object) => {
     const photo = photoTemplate.cloneNode(true);
 
     photo.querySelector('.picture__img').src = object.url;

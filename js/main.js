@@ -1,6 +1,10 @@
 import './data.js';
-import './photo-editor.js';
 import './validation.js';
-import {renderPhotos} from './picture.js';
+import { setFormSubmit } from './photo-editor.js';
+import { renderPhotos } from './picture.js';
+import { getData } from './api.js';
 
-renderPhotos();
+getData((photos) => renderPhotos(photos));
+
+setFormSubmit();
+
