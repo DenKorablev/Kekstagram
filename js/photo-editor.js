@@ -36,23 +36,21 @@ const onCloseEditor = () => {
   finilazeEffects();
 }
 
-export const setFormSubmit = () => {
-  uploadPhotoForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+uploadPhotoForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
 
-    sendData(
-      () => {
-        showSuccess();
-        onCloseEditor();
-      },
-      () => {
-        showAlert('Не удалось отправить форму');
-        onCloseEditor();
-      },
-      new FormData(evt.target),
-    );
-  });
-};
+  sendData(
+    () => {
+      showSuccess();
+      onCloseEditor();
+    },
+    () => {
+      showAlert('Не удалось отправить форму');
+      onCloseEditor();
+    },
+    new FormData(evt.target),
+  );
+});
 
 uploadFile.addEventListener('change', onOpenEditor);
 
