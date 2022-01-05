@@ -28,11 +28,9 @@ export const filterPhotos = (photos) => {
 };
 
 export const onFilterClick = (cb) => {
-  debugger
   imgFilters.addEventListener('click', (evt) => {
     const classes = evt.target.classList;
     if (classes.contains('img-filters__button') && !classes.contains('img-filters__button--active')) {
-      debugger
       removePhotos();
       removeActiveClass();
       classes.add('img-filters__button--active');
