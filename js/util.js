@@ -81,3 +81,11 @@ export const showAlert = (message) => {
     container.remove();
   }, ALERT_SHOW_TIME);
 };
+
+export const debounce = (cb, delay) => {
+  let timeout;
+  return () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(cb, delay);
+  }
+}
