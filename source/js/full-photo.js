@@ -48,7 +48,7 @@ const showCommentsLoader = (sliceComments, comments) => {
 }
 
 const showCommentsList = (visibledComments, comments) => {
-  const sliceComments = [...comments].slice(0, visibledComments);
+  const sliceComments = comments.slice(0, visibledComments);
   commentList.innerHTML = '';
   socialCommentsCount.textContent = `${sliceComments.length} из ${comments.length} комментариев`;
   renderComments(sliceComments);
